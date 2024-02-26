@@ -7,11 +7,22 @@
  * @package FWD_Starter_Theme
  */
 
-if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+if ( ! is_active_sidebar( 'sidebar-1' ) || ! is_active_sidebar( 'sidebar-2' ) ) {
 	return;
 }
 ?>
 
 <aside id="secondary" class="widget-area">
-	<?php dynamic_sidebar( 'sidebar-1' ); ?>
+	<?php 
+	if ( is_page() ) {
+		dynamic_sidebar( 'sidebar-2' );
+} else {
+		dynamic_sidebar('sidebar-1' );
+}
+	?>
+
+	<?php get_template_part('template-parts/work', 'categories'); ?>
+	<?php get_template_part('template-parts/testimonial'); ?>
 </aside><!-- #secondary -->
+
+
